@@ -13,11 +13,11 @@ const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
 
 // Starting condition
-let score, currentScore, activePlayer, playing;
+let scores, currentScore, activePlayer, playing;
 
 // Function for starting condition
 const init = function () {
-  score = [0, 0];
+  scores = [0, 0];
   currentScore = 0;
   activePlayer = 0;
   playing = true;
@@ -62,6 +62,31 @@ btnRoll.addEventListener('click', function () {
         currentScore;
     } else {
       // switch to next player
+      switchPlayer();
+    }
+  }
+});
+
+// Hold dice function button
+btnHold.addEventListener('click', function () {
+  if (playing) {
+    // 1. add current score to active player score
+    scores[activePlayer] += currentScore;
+    document.getElementById(`score--${activePlayer}`).textContent =
+      scores[activePlayer];
+
+    // 2. check if player score > 100, that current player win, finish the game
+    if (scores[activePlayer] >= 100) {
+      playing = false;
+      document
+        .querySelector(`.player--${activePlayer}`)
+        .classList.add('player--winner');
+      document
+        .querySelector(`.player--${activePlayer}`)
+        .classList.remove('player--active');
+      diceEl.classList.add('hidden');
+    } else {
+      // 3. if not, switch player
       switchPlayer();
     }
   }
