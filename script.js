@@ -33,7 +33,7 @@ const init = function () {
   player0El.classList.add('player--active');
   player1El.classList.remove('player--active');
 };
-// init();
+init();
 
 // Function to switch player
 const switchPlayer = function () {
@@ -43,6 +43,29 @@ const switchPlayer = function () {
   player0El.classList.toggle('player--active');
   player1El.classList.toggle('player--active');
 };
+
+// Roll dice function button
+btnRoll.addEventListener('click', function () {
+  if (playing) {
+    // 1. generating a random dice roll
+    const dice = Math.trunc(Math.random() * 6) + 1;
+
+    // 2. display dice
+    diceEl.classList.remove('hidden');
+    diceEl.src = `img/dice-${dice}.png`;
+
+    // 3. check for rolled 1
+    if (dice !== 1) {
+      // add dice to current score
+      currentScore += dice;
+      document.getElementById(`current--${activePlayer}`).textContent =
+        currentScore;
+    } else {
+      // switch to next player
+      switchPlayer();
+    }
+  }
+});
 
 // New game function button
 btnNew.addEventListener('click', function () {
