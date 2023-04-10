@@ -114,9 +114,8 @@ main {
   cursor: pointer;
   font-weight: 400;
   transition: all 0.2s;
-  background-color: white;
   background-color: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(10px);
+  /* backdrop-filter: blur(10px); */
   padding: 0.7rem 2.5rem;
   border-radius: 50rem;
   box-shadow: 0 1.75rem 3.5rem rgba(0, 0, 0, 0.1);
@@ -147,6 +146,10 @@ main {
 
 .btn:focus {
   outline: none;
+}
+
+.non-active {
+  background-color: rgba(160, 160, 160, 0.5);
 }
 
 .dice {

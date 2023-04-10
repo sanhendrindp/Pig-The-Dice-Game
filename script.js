@@ -32,6 +32,8 @@ const init = function () {
   player1El.classList.remove('player--winner');
   player0El.classList.add('player--active');
   player1El.classList.remove('player--active');
+  btnRoll.classList.remove('non-active');
+  btnHold.classList.remove('non-active');
 };
 init();
 
@@ -85,6 +87,8 @@ btnHold.addEventListener('click', function () {
         .querySelector(`.player--${activePlayer}`)
         .classList.remove('player--active');
       diceEl.classList.add('hidden');
+      btnRoll.classList.add('non-active');
+      btnHold.classList.add('non-active');
     } else {
       // 3. if not, switch player
       switchPlayer();
